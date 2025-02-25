@@ -1,0 +1,334 @@
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MoneyTransfer GE</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <link href="styles.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.29/jspdf.plugin.autotable.min.js"></script>
+</head>
+<body>
+  <div class="container mt-5">
+    <div id="headerSection" class="text-center mb-4">
+      <img id="logoPreview" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjYwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9Im5vbmUiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iIzAwNjZjYyI+TW9uZXlUcmFuc2ZlcjwvdGV4dD48L3N2Zz4=" alt="Logo" style="max-height: 60px; margin-bottom: 10px;">
+      <h1 class="text-primary">MoneyTransfer Guinea Ecuatorial</h1>
+      <p id="companyPhone" class="text-muted"></p>
+    </div>
+    
+    <!-- Formulario de registro -->
+    <div id="registerForm" class="card p-4 shadow-lg">
+      <h3 class="text-center mb-3">Registro</h3>
+      <form id="userForm">
+        <div class="mb-3">
+          <label class="form-label">Nombre Completo:</label>
+          <input type="text" class="form-control" id="fullName" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Correo (@gmail.com):</label>
+          <input type="email" class="form-control" id="email" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">DIP (9 dígitos):</label>
+          <input type="text" class="form-control" id="dip" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Contraseña:</label>
+          <input type="password" class="form-control" id="password" required>
+          <small class="text-muted">8 caracteres, 1 mayúscula, 4 números</small>
+        </div>
+        <button type="submit" class="btn btn-primary w-100 mb-3">Registrarse</button>
+        <button type="button" class="btn btn-outline-primary w-100" id="switchToLoginBtn">
+          ¿Ya tienes una cuenta? Inicia sesión
+        </button>
+      </form>
+    </div>
+
+    <!-- Formulario de login -->
+    <div id="loginForm" class="card p-4 shadow-lg d-none">
+      <h3 class="text-center mb-3">Inicio de Sesión</h3>
+      <form id="loginUserForm">
+        <div class="mb-3">
+          <label class="form-label">Correo (@gmail.com):</label>
+          <input type="email" class="form-control" id="loginEmail" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Contraseña:</label>
+          <input type="password" class="form-control" id="loginPassword" required>
+        </div>
+        <button type="submit" class="btn btn-primary w-100 mb-3">Iniciar Sesión</button>
+        <button type="button" class="btn btn-outline-primary w-100" id="switchToRegisterBtn">
+          ¿No tienes una cuenta? Regístrate
+        </button>
+      </form>
+    </div>
+
+    <!-- Formulario de transferencia -->
+    <div id="transferForm" class="card p-4 shadow-lg mt-4 d-none">
+      <h3 class="text-center mb-3">Realizar Transferencia</h3>
+      <form id="moneyTransferForm">
+        <div class="mb-3">
+          <label class="form-label">Nombre del Remitente:</label>
+          <input type="text" class="form-control" id="senderName" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">DIP del Remitente:</label>
+          <input type="text" class="form-control" id="senderDip" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Ciudad de Envío:</label>
+          <select class="form-select" id="sendCity" required></select>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Ciudad de Recepción:</label>
+          <select class="form-select" id="receiveCity" required></select>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Nombre del Receptor:</label>
+          <input type="text" class="form-control" id="receiverName" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">DIP del Receptor (9 dígitos):</label>
+          <input type="text" class="form-control" id="receiverDip" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Teléfono del Receptor:</label>
+          <input type="tel" class="form-control" id="receiverPhone" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Monto (XAF):</label>
+          <input type="number" class="form-control" id="amount" required>
+        </div>
+        <button type="submit" class="btn btn-success w-100 mb-2">Enviar Dinero</button>
+        <button type="button" class="btn btn-secondary w-100" id="showHistoryBtn">
+          <i class="bi bi-lock-fill"></i> Ver Historial (Admin)
+        </button>
+      </form>
+    </div>
+
+    <!-- Botón para ver usuarios -->
+    <div class="text-center mt-4">
+      <button id="showUsersBtn" class="btn btn-info me-2">
+        <i class="bi bi-lock-fill"></i> Usuarios (Admin)
+      </button>
+      <button id="showSettingsBtn" class="btn btn-warning me-2">
+        <i class="bi bi-lock-fill"></i> Configuración (Admin)
+      </button>
+      <button id="showInfoBtn" class="btn btn-primary me-2">Infórmate</button>
+      <button id="showReportsBtn" class="btn btn-primary me-2">
+        <i class="bi bi-graph-up"></i> Reportes (Admin)
+      </button>
+    </div>
+
+    <!-- Modal para mostrar usuarios -->
+    <div class="modal fade" id="usersModal" tabindex="-1">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Usuarios Registrados</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <div id="usersList"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal para historial de transferencias -->
+    <div class="modal fade" id="historyModal" tabindex="-1">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Historial de Transferencias</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <div id="transfersList"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal para configuración -->
+    <div class="modal fade" id="settingsModal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Configuración</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <form id="settingsForm">
+              <div class="mb-3">
+                <label class="form-label">Desbloquear usuario (email):</label>
+                <input type="email" class="form-control" id="unblockUserEmail">
+                <small class="text-muted">Ingrese el email del usuario a desbloquear</small>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Logo de la empresa:</label>
+                <input type="file" class="form-control" id="logoInput" accept="image/*">
+                <small class="text-muted">Tamaño recomendado: 200x60 pixels</small>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Teléfono de la empresa:</label>
+                <input type="tel" class="form-control" id="phoneInput" required>
+              </div>
+              <button type="submit" class="btn btn-primary w-100">Guardar configuración</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal para información -->
+    <div class="modal fade" id="infoModal" tabindex="-1">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Información de MoneyTransfer GE</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <div class="card mb-4">
+              <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">¿Para qué sirve?</h5>
+              </div>
+              <div class="card-body">
+                <p>MoneyTransfer GE es una aplicación diseñada para facilitar el envío y recepción de dinero en Guinea Ecuatorial, permitiendo transferencias seguras entre diferentes ciudades del país.</p>
+              </div>
+            </div>
+
+            <div class="card mb-4">
+              <div class="card-header bg-success text-white">
+                <h5 class="mb-0">¿Cómo se utiliza?</h5>
+              </div>
+              <div class="card-body">
+                <ol>
+                  <li>Regístrese con sus datos personales</li>
+                  <li>Inicie sesión en su cuenta</li>
+                  <li>Seleccione las ciudades de envío y recepción</li>
+                  <li>Ingrese los datos del receptor y el monto</li>
+                  <li>Realice la transferencia y reciba su comprobante</li>
+                </ol>
+              </div>
+            </div>
+
+            <div class="card mb-4">
+              <div class="card-header bg-info text-white">
+                <h5 class="mb-0">Tabla de Comisiones</h5>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>Rango de Envío (XAF)</th>
+                        <th>Comisión (XAF)</th>
+                      </tr>
+                    </thead>
+                    <tbody id="comissionTable">
+                      <!-- Filled dynamically by JavaScript -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header bg-secondary text-white">
+                <h5 class="mb-0">Información del Desarrollador</h5>
+              </div>
+              <div class="card-body">
+                <ul class="list-unstyled">
+                  <li><strong>Nombre:</strong> Tarciano ENZEMA NCHAMA</li>
+                  <li><strong>Formación:</strong> Finalista universario de la U.N.G.E.</li>
+                  <li><strong>Facultad:</strong> Ciencias económicas, gestión y administración</li>
+                  <li><strong>Departamento:</strong> Informática de gestión empresarial</li>
+                  <li><strong>Email:</strong> <a href="/cdn-cgi/l/email-protection#2b4e45514e464a41596b4c464a424705484446"><span class="__cf_email__" data-cfemail="4722293d222a262d3507202a262e2b6924282a">[email&#160;protected]</span></a></li>
+                  <li><strong>Fecha de creación:</strong> 07/02/2025</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal para registro de emails -->
+    <div class="modal fade" id="emailsModal" tabindex="-1">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Registros de Usuarios</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <div id="emailsList"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal para reportes -->
+    <div class="modal fade" id="reportsModal" tabindex="-1">
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Reportes de Transferencias</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-6 mb-4">
+                <div class="card">
+                  <div class="card-header">
+                    Transferencias por Día
+                  </div>
+                  <div class="card-body">
+                    <canvas id="transfersByDayChart"></canvas>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 mb-4">
+                <div class="card">
+                  <div class="card-header">
+                    Transferencias por Ciudad
+                  </div>
+                  <div class="card-body">
+                    <canvas id="transfersByCityChart"></canvas>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-header">
+                    Comisiones por Día
+                  </div>
+                  <div class="card-body">
+                    <canvas id="commissionsByDayChart"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      Realice sus envíos y recepciones de dinero a nivel local (Guinea Ecuatorial), mediante MoneyTransferGE.
+    </div>
+  </footer>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="db.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

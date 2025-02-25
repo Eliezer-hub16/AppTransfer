@@ -1,0 +1,262 @@
+body {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
+}
+
+.card {
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.9);
+  transition: transform 0.3s ease;
+  margin-bottom: 20px;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* Estilo específico para el formulario de transferencia */
+#transferForm.card {
+  background: #000000;
+  color: #00ff00;
+}
+
+#transferForm label {
+  color: #00ff00;
+}
+
+#transferForm input,
+#transferForm select {
+  background: #1a1a1a;
+  color: #00ff00;
+  border-color: #00ff00;
+}
+
+#transferForm input:focus,
+#transferForm select:focus {
+  background: #1a1a1a;
+  color: #00ff00;
+  border-color: #00ff00;
+  box-shadow: 0 0 0 0.25rem rgba(0, 255, 0, 0.25);
+}
+
+#transferForm select option {
+  background: #1a1a1a;
+  color: #00ff00;
+}
+
+#transferForm h3 {
+  color: #00ff00;
+}
+
+#transferForm input[readonly] {
+  background: #2a2a2a;
+  color: #00ff00;
+  border-color: #00ff00;
+  opacity: 0.8;
+}
+
+.badge {
+  font-size: 0.9em;
+  padding: 0.4em 0.6em;
+}
+
+.btn {
+  border-radius: 25px;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+}
+
+.btn-group .btn {
+  transition: all 0.3s ease;
+}
+
+.btn-group .btn:hover {
+  transform: scale(1.05);
+}
+
+.btn-outline-primary:hover {
+  transform: scale(1.05);
+}
+
+.bi-lock-fill {
+  font-size: 0.9em;
+  margin-right: 5px;
+}
+
+.btn-info:hover,
+.btn-warning:hover {
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.form-control, .form-select {
+  border-radius: 10px;
+}
+
+.modal-content {
+  border-radius: 15px;
+}
+
+.modal-lg {
+  max-width: 800px;
+}
+
+.card-header h5 {
+  margin-bottom: 0;
+}
+
+.table-responsive {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+[id$="Modal"] .modal-header {
+  position: relative;
+}
+
+[id$="Modal"] .modal-header::after {
+  content: "Área Administrativa";
+  position: absolute;
+  right: 45px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.8em;
+  color: #666;
+  font-style: italic;
+}
+
+#infoModal .card {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+
+#infoModal .card:hover {
+  transform: translateY(-2px);
+}
+
+#infoModal .list-unstyled li {
+  margin-bottom: 8px;
+}
+
+#logoPreview {
+  max-height: 60px;
+  transition: transform 0.3s ease;
+}
+
+#logoPreview:hover {
+  transform: scale(1.05);
+}
+
+#companyPhone {
+  font-size: 1.1em;
+  color: #666;
+  margin-top: -10px;
+  margin-bottom: 20px;
+}
+
+#showSettingsBtn {
+  transition: all 0.3s ease;
+}
+
+#showSettingsBtn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+#showInfoBtn {
+  transition: all 0.3s ease;
+}
+
+#showInfoBtn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-in {
+  animation: slideIn 0.3s ease forwards;
+}
+
+.modal-xl {
+  max-width: 95%;
+}
+
+#reportsModal .card {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+}
+
+#reportsModal .card-header {
+  background-color: #f8f9fa;
+  font-weight: bold;
+}
+
+#reportsModal canvas {
+  max-height: 400px;
+}
+
+#showReportsBtn {
+  transition: all 0.3s ease;
+}
+
+#showReportsBtn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Add margin to the buttons in the button group */
+.text-center.mt-4 .btn {
+  margin-right: 0.5rem !important; /* Use !important to override any Bootstrap margins */
+}
+
+/* Remove margin from the last button to maintain alignment */
+.text-center.mt-4 .btn:last-child {
+  margin-right: 0;
+}
+
+/* Updated Footer styles */
+.footer {
+  background: #000000;
+  padding: 4px 0;  
+  position: relative; 
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 -1px 5px rgba(0,0,0,0.1);
+  font-style: italic;
+  color: #ffffff;
+  font-size: 0.85em;
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+/* Remove container margin-bottom since footer is no longer fixed */
+.container {
+  margin-bottom: 0;
+}
